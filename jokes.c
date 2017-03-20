@@ -7,31 +7,39 @@ int main(void)
 {
 	int x;
 	char *answer;
-	if((answer=malloc(21*(sizeof (char))))==NULL)
+	if ((answer=malloc(21*(sizeof (char))))==NULL)
 	{
-		printf("Not enough space, shutting down programm.\n");
+		fprintf(stderr,"Not enough space, shutting down programm.\n");
+		return -1;
 	}
-	printf("Do you want to read a joke or to tell me one?\n(answer with 'read' or 'tell')\n");
-	fgets(answer,21,stdin);
-	if(0==strcmp(answer,"read\n"))
+	printf("Do you want to read a joke or to tell me one?\n(answer with 'read' or 'tell', type exit for the obvious reason)\n");
+	fgets(answer,6,stdin);
+	while (0!=strcmp(answer,"exit\n"))
 	{
-		printf("Let me choose one, hit Enter when ready to laugh :P\n");
-		getchar();
-		if(read())
+		if (0==strcmp(answer,"read\n"))
 		{
-			printf("I found no jokes!! Pls update me :P\n");
+			fprintf(stderr,"Let me choose one, hit Enter when ready to laugh :P\n");
+			getchar();
+			if(read())
+			{
+				fprintf(stderr,"I found no jokes!! Pls update me :P\n");
+			}
 		}
-		getchar();
-	}
-	else
-	{
-		printf("Okie dokie, go on then :D\n");
-		if(tell()==1)
+		else if (0==strcmp(answer,"tell\n"))
 		{
-			printf("No space available buddy...\n");
+			fprintf(stderr,"Okie dokie, go on then :D\n");
+			if(tell()==1)
+			{
+				fprintf(stderr,"No space available buddy...\n");
+			}
+			fprintf(stderr,"Hahahahaha, nice one! :D\n");
 		}
-		printf("Hahahahaha, nice one! :D\n");
-		getchar();
+		else
+		{
+			fprintf(stderr,"Please select a valid choice:\n");
+		}
+		fprintf(stderr,"(answer with 'read' or 'tell', type exit for the obvious reason)\n");
+		fgets(answer,6,stdin);
 	}
 	free(answer);
 	return 0;	
