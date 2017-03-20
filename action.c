@@ -22,8 +22,8 @@ int tell(void)
 		fprintf(data,"-Knock knock?\n-Who's there?\n");
 		printf("Who's there?\n");
 		fgets(joke,101,stdin);
-		joke[strlen(joke)-2]='\0';
-		fprintf(data,"-%s.\n-%s who?\n",joke,joke); //thelei teleia sto telos tou onomatos OPWSDHPOTE
+		joke[strlen(joke)-1]='\0';
+		fprintf(data,"-%s.\n-%s who?\n",joke,joke);
 		printf("%s who?\n",joke);
 		fgets(joke,101,stdin);
 		fprintf(data,"-%s#\n",joke);
